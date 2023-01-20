@@ -1,0 +1,109 @@
+----------------------------------------
+#CREATING DATABASE
+
+1. use name_of_database ( to create or switch database).
+
+2. db.name_of_collection.insertOne({
+  name: "The forest hiker", price: 297, rating: 4.7
+}) ( To create collection and inserting one document in database ).
+
+3. db.name_of_collection.find() ( to see data ).
+
+4. show dbs ( To show all the database in mongodb ).
+
+5. show collections ( To view all the collections ).
+
+----------------------------------------
+#CREATING DOCUMENT
+
+1. To insert many documents in collection
+    db.name_of_collection.insertMany([{
+    name: "",
+    price : 291,
+    rating : 5
+    },
+    {
+    name : "",
+    price: 761,
+    rating: 2,
+    difficulty : "easy"
+    },
+    {
+        name:"The sea explorer",
+        price: 236
+    }
+    ])
+
+    db.name_of_collection.insertOne({
+    name: "The forest hiker", price: 297, rating: 4.7
+    })
+
+2. db.name_of_collection.find()
+
+----------------------------------------
+#QUERYING DOCUMENTS
+
+1. To query all the documents
+
+    db.name_of_collection.find()
+
+2. To query using data
+
+    db.name_of_collection.find({
+    name : "The forest hiker"
+    }) 
+
+3. Querying for price less than 500.
+ db.name_of_collection.find({
+ price : { $lte : 500 }
+})
+
+4. Query for two search criteria at same time.
+db.name_of_collection.find({
+ price: { $lt :500 }, rating : { $gte : 4.8 }
+})
+( Also known as AND query )
+
+5. Query for OR criteria.
+db.name_of_collection.find({
+$or : [
+      { price: {$lt : 500}},
+       { rating: {$gte : 4.8}}
+   ]
+})
+
+----------------------------------
+#UPDATING DOCUMENTS
+
+1. db.name_of_collection.updateOne({
+  name: "the forest hiker"
+}, 
+{
+  $set : { price : 597 }
+})
+
+2. db.name_of_collection.updateMany({
+   price: { $gt : 500 }, rating : { $gte : 4.8 } 
+}, 
+ { 
+   $set : { premium : true }
+ })
+
+3 To replace the whole document.
+db.name_of_collection.replaceOne(
+    {search qurey},
+    { Data for replacement }
+)
+
+----------------------------------------
+
+#DELETING DOCUMENTS
+
+1. db.name_of_collection.deleteMany(
+ { 
+   rating : { $lt: 4.8 }
+})
+
+2. Delete all the documents.
+
+db.name_of_collection.deleteMany({})
